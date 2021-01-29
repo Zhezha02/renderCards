@@ -1,15 +1,80 @@
 @import './reset.css';
 
 :root {
-  font-family: sans-serif;
-  font-size: 18px;
+  font-family: 'Roboto' sans-serif;
+  font-size: 14px;
 }
 
 * {
   box-sizing: border-box;
 }
+.cardsContaiter {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+.userCard {
+  margin: 5px;
+  max-width: 270px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.imageWrapper {
+  margin-bottom: 10px;
+  position: relative;
+  width: inherit;
+  height: 270px;
+}
+.initials {
+  font-size: 2rem;
+  color: white;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardImg {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
 
-.cardsContainer {
+  height: inherit;
+  width: inherit;
+  object-fit: cover;
+  object-position: center;
+}
+.userName {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.cardDescriction {
+  color: #6c7279;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+.cardLinks {
+  display: flex;
+  justify-content: space-evenly;
+}
+.mediaLink {
+  display: block;
+  padding: 4px;
+  border: 1px solid #6c7279;
+  border-radius: 2px;
+}
+.mediaLink:hover {
+  background-color: red;
+  border-color: red;
+}
+.svg-icon:hover {
+
+  fill:#ffffff;
+}
+/* .cardsContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -64,4 +129,26 @@
 .cardName:empty::after,
 .initials:empty::after {
   content: "Unknown";
+} */
+
+@media screen and (min-width: 576px) {
+  .cardsContaiter {
+    max-width: 540px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .cardsContaiter {
+    max-width: 720px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .cardsContaiter {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .cardsContaiter {
+    max-width: 1140px;
+  }
 }

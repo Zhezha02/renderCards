@@ -8,7 +8,7 @@
 * {
   box-sizing: border-box;
 }
-.cardsContaiter {
+.cardsContainer {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
@@ -65,14 +65,14 @@
   padding: 4px;
   border: 1px solid #6c7279;
   border-radius: 2px;
+  transition: all 0.5ms ;
 }
 .mediaLink:hover {
   background-color: red;
   border-color: red;
 }
 .svg-icon:hover {
-
-  fill:#ffffff;
+  fill: #ffffff;
 }
 /* .cardsContainer {
   display: flex;
@@ -132,23 +132,23 @@
 } */
 
 @media screen and (min-width: 576px) {
-  .cardsContaiter {
+  .cardsContainer {
     max-width: 540px;
   }
 }
 @media screen and (min-width: 768px) {
-  .cardsContaiter {
+  .cardsContainer {
     max-width: 720px;
   }
 }
 @media screen and (min-width: 992px) {
-  .cardsContaiter {
+  .cardsContainer {
     max-width: 960px;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .cardsContaiter {
+  .cardsContainer {
     max-width: 1140px;
   }
 }

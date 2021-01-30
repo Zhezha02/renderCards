@@ -15,7 +15,7 @@
   margin: 0 auto;
 }
 .userCard {
-  margin: 5px;
+  margin: 2rem 1rem;
   max-width: 270px;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
 .imageWrapper {
   margin-bottom: 10px;
   position: relative;
-  width: inherit;
+  width: 270px;
   height: 270px;
 }
 .initials {
@@ -51,6 +51,11 @@
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
+.userName:empty::after,
+.initials:empty::after {
+  content: "Unknown";
+}
+
 .cardDescriction {
   color: #6c7279;
   font-size: 1rem;

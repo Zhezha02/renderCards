@@ -53,7 +53,7 @@
 }
 .userName:empty::after,
 .initials:empty::after {
-  content: "Unknown";
+  content: 'Unknown';
 }
 
 .cardDescriction {
@@ -66,21 +66,29 @@
   justify-content: space-evenly;
 }
 .mediaLink {
-  display: block;
-  padding: 4px;
-  border: 1px solid #6c7279;
+  width: 2rem;
+  height: 2rem;
+  text-decoration: none;
+  color: #c6cacc;
+  
+  border: 1px solid #c6cacc;
   border-radius: 2px;
-  transition:  all 0.5s ease-out;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.5s ease-out;
 }
 .mediaLink:hover {
   background-color: red;
   border-color: red;
+  color: white;
 }
-/* иконочные шрифты? */
-.svg-icon:hover {
-  fill: #ffffff;
+.icon {
+  font-size: 1.5rem;
 }
+
 /* .cardsContainer {
   display: flex;
   flex-flow: row wrap;

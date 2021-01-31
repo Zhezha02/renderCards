@@ -15,7 +15,7 @@
   margin: 0 auto;
 }
 .userCard {
-  margin: 2rem 1rem;
+  margin: 2rem 0.5rem;
   max-width: 270px;
   display: flex;
   flex-direction: column;
@@ -64,13 +64,14 @@
 .cardLinks {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .mediaLink {
   width: 2rem;
   height: 2rem;
   text-decoration: none;
   color: #c6cacc;
-  
+
   border: 1px solid #c6cacc;
   border-radius: 2px;
 

@@ -1,18 +1,16 @@
 'use strict';
-// new URL('https://www.facebook.com/JasonStatham/');
-// new Map()
-//   .set('www.facebook.com', 'src_to_icon')
-//   .set('www.facebook.com', 'src_to_icon')
-//   .set('www.facebook.com', 'src_to_icon');
-const USER_DESCRIPTION = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim amet perferendis est dolores eum alias.';
 
+const USER_DESCRIPTION = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim amet perferendis est dolores eum alias.';
+const socialMediaMap = new Map()
+  .set("twitter.com", 'fa-twitter')
+  .set("www.instagram.com", 'fa-instagram')
+  .set("www.facebook.com", 'fa-facebook');
 
 const userCardContainer = document.getElementById('userCardContainer');
 const userCards = responseData.map((user) => createUsersCards(user));
 userCardContainer.append(...userCards);
 
 function createUsersCards(user) {
-
   const userName = createElement(
     'h3',
     { classNames: ['userName'] },
@@ -22,12 +20,18 @@ function createUsersCards(user) {
     'p',
     { classNames: ['cardDescriction'] },
     USER_DESCRIPTION);
-
+  const cardLinks = createElement(
+    'div',
+    { classNames: ['cardLinks'] },
+    ...createContactLinks(user)
+  )
   return createElement('article',
     { classNames: ['userCard'] },
     createUserImgWrapper(user),
     userName,
-    userDescription);
+    userDescription,
+    cardLinks
+  );
 }
 
 function getFullName({ firstName, lastName }) {
@@ -43,6 +47,28 @@ function getInitials({ firstName, lastName }) {
   return (`${firstName.trim().charAt(0)} ${lastName.trim().charAt(0)}`);
 }
 
+function createContactLinks({ contacts }) {
+  return contacts
+    .filter((contact) => contact ? contact : '')
+    .map((contact) => {
+      return createElement(
+        'a',
+        {
+          classNames: ['mediaLink'],
+          attributes: { 'href': contact, 'target': '_blank' }
+        },
+        createContactIcon(contact))
+    })
+}
+
+function createContactIcon(contact) {
+  const span = createElement(
+    'span',
+    { classNames: ['fa', 'icon'] }
+  );
+  span.classList.add(socialMediaMap.get(new URL(contact).hostname));
+  return span;
+}
 
 function createUserImgWrapper(user) {
   const imageWrapper = createElement('div',
@@ -55,9 +81,6 @@ function createUserImgWrapper(user) {
   const initials = createElement('div',
     { classNames: ['initials'] },
     document.createTextNode(getInitials(user)));
-   
-    console.log(user.id);
-    console.log(getInitials(user));
 
   createImgElem(user, 'cardImg');
   imageWrapper.append(initials);
@@ -105,7 +128,7 @@ function handleImageLoad({
  */
 function createElement(
   type,
-  { classNames = [], onClick = null, attributes = {} },
+  { classNames = [], onClick = null, attributes = {} } = {},
   ...children
 ) {
   const elem = document.createElement(type);

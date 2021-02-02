@@ -26,7 +26,10 @@ function createUsersCards(user) {
     ...createContactLinks(user)
   )
   return createElement('article',
-    { classNames: ['userCard'] },
+    {
+      classNames: ['userCard'],
+      attributes: { 'tabindex': 0 }
+    },
     createUserImgWrapper(user),
     userName,
     userDescription,

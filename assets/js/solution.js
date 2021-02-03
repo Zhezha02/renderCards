@@ -1,13 +1,13 @@
 'use strict';
 
 const userCardContainer = document.getElementById('userCardContainer');
-
+const checkedUsers = [];
 fetch('http://192.168.1.148:3000/users')
   .then((response) => response.json())
   .then((data) => {
     userCardContainer.append(...data.map((user) => createUsersCards(user)))
   })
-  .catch(()=>{new Error('Data is not delivered')})
+  .catch(() => { new Error('Data is not delivered') })
 
 function createUsersCards(user) {
   const userName = createElement(
@@ -24,16 +24,45 @@ function createUsersCards(user) {
     { classNames: ['cardLinks'] },
     ...createContactLinks(user)
   )
-  return createElement('article',
+  const userCard = createElement('article',
     {
       classNames: ['userCard'],
-      attributes: { 'tabindex': 0 }
+      attributes: { 'tabindex': 0 },
+      dataAttr: {"id": user.id}
     },
     createUserImgWrapper(user),
     userName,
     userDescription,
     cardLinks
   );
+
+  userCard.addEventListener('click', (e) => {
+    console.log(e.currentTarget);
+    checkedUsers.push()
+  })
+
+  return userCard;
 }
+
+
+// const userCard = createElement('article',
+//   {
+//     classNames: ['userCard'],
+//     attributes: { 'tabindex': 0 },
+//   },
+//   createUserImgWrapper(user),
+//   userName,
+//   userDescription,
+//   cardLinks
+// );
+
+// // userCard.addEventListener('click', (e) => {
+// //   checkedUsers.push(e.target);
+// //   console.log(checkedUsers);
+// // })
+// return userCard;
+// }
+
+// const checkedUsers = [];
 
 

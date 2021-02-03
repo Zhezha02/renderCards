@@ -1,8 +1,13 @@
 'use strict';
 
 const userCardContainer = document.getElementById('userCardContainer');
-const userCards = responseData.map((user) => createUsersCards(user));
-userCardContainer.append(...userCards);
+
+fetch('http://192.168.1.148:3000/users')
+  .then((response) => response.json())
+  .then((data) => {
+    userCardContainer.append(...data.map((user) => createUsersCards(user)))
+  })
+  .catch(()=>{new Error('Data is not delivered')})
 
 function createUsersCards(user) {
   const userName = createElement(

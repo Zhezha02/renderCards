@@ -2,7 +2,7 @@
 
 const userCardContainer = document.getElementById('userCardContainer');
 const checkedUsers = [];
-fetch('http://192.168.1.148:3000/users')
+fetch('./assets/js/data/users.json')
   .then((response) => response.json())
   .then((data) => {
     userCardContainer.append(...data.map((user) => createUsersCards(user)))
@@ -46,23 +46,23 @@ function createUsersCards(user) {
 
 
 // const userCard = createElement('article',
-//   {
-//     classNames: ['userCard'],
-//     attributes: { 'tabindex': 0 },
-//   },
-//   createUserImgWrapper(user),
-//   userName,
-//   userDescription,
-//   cardLinks
-// );
-
-// // userCard.addEventListener('click', (e) => {
-// //   checkedUsers.push(e.target);
-// //   console.log(checkedUsers);
-// // })
-// return userCard;
-// }
-
-// const checkedUsers = [];
-
+      //   {
+      //     classNames: ['userCard'],
+      //     attributes: { 'tabindex': 0 },
+      //   },
+      //   createUserImgWrapper(user),
+      //   userName,
+      //   userDescription,
+      //   cardLinks
+      // );
+      
+      // // userCard.addEventListener('click', (e) => {
+      // //   checkedUsers.push(e.target);
+      // //   console.log(checkedUsers);
+      // // })
+      // return userCard;
+      // }
+      
+      // const checkedUsers = [];
+      
 

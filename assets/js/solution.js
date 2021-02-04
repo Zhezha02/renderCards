@@ -1,7 +1,8 @@
 'use strict';
 
 const userCardContainer = document.getElementById('userCardContainer');
-const checkedUsers = [];
+const checkedUsers = new Set();
+const checkedUsersList = document.querySelector('#checkedUsers');
 fetch('./assets/js/data/users.json')
   .then((response) => response.json())
   .then((data) => {
@@ -28,41 +29,43 @@ function createUsersCards(user) {
     {
       classNames: ['userCard'],
       attributes: { 'tabindex': 0 },
-      dataAttr: {"id": user.id}
+      dataAttr: { "id": user.id }
     },
     createUserImgWrapper(user),
     userName,
     userDescription,
     cardLinks
   );
-
-  userCard.addEventListener('click', (e) => {
-    console.log(e.currentTarget);
-    checkedUsers.push()
-  })
+  // userCard.addEventListener('click', ({ currentTarget }) => {
+  //   // checkedUsers.add({ [currentTarget.dataset.id]: currentTarget });
+  //   checkedUsers.add(currentTarget.dataset.id);
+  //   console.log(checkedUsers);
+  //   const userName = currentTarget.querySelector('.userName').textContent;
+  //   addListItem(userName, checkedUsersList)
+  //   updateListItem('', checkedUsersList)
+  // })
 
   return userCard;
 }
 
+// function addListItem(liContent, ul) {
+//   const li = createElement('li', {
+//     classNames: [],
+//   },
+//   document.createTextNode(liContent))
+//   ul.append(li);
+// }
+// /**
+//  * 
+//  * @param {new Set} db 
+//  * @param {Element} list 
+//  */
+// function updateListItem(db, list)  {
+//   const liCollection =  list.children; 
+//   for (const item of Object.values(liCollection)){
+//     console.log(item.textContent);
+//   }
+// }
 
-// const userCard = createElement('article',
-      //   {
-      //     classNames: ['userCard'],
-      //     attributes: { 'tabindex': 0 },
-      //   },
-      //   createUserImgWrapper(user),
-      //   userName,
-      //   userDescription,
-      //   cardLinks
-      // );
-      
-      // // userCard.addEventListener('click', (e) => {
-      // //   checkedUsers.push(e.target);
-      // //   console.log(checkedUsers);
-      // // })
-      // return userCard;
-      // }
-      
-      // const checkedUsers = [];
-      
+
 

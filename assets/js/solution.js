@@ -50,18 +50,17 @@ function createUsersCards(user) {
       });
 
     checkedUsersMap.set(userId, currentTarget);
-    console.log(checkedUsersMap); //DELETE
   })
 
   return userCard;
 }
 
 
-
 /**
  * 
  * @param {new Map} db 
  * @param {Element} list 
+ * @param {object} listItem
  * @param {*} listItem.dbKey
  * @param {string} listItem.liContent
  * @returns {undefined, HTMLLIElement}
@@ -74,8 +73,9 @@ function expandingTheList(db, list, { dbKey, liContent }) {
   const li = createElement(
     'li',
     {},
-    document.createTextNode(liContent)
+    document.createTextNode(liContent),
   )
+  li.append(createDeleteBtn(deleteHandler.bind(li), dbKey));
   list.append(li);
   return li;
 }

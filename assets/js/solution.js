@@ -1,7 +1,7 @@
 'use strict';
 
 const userCardContainer = document.getElementById('userCardContainer');
-const checkedUsers = new Set();
+const checkedUsersMap = new Map();
 const checkedUsersList = document.querySelector('#checkedUsers');
 fetch('./assets/js/data/users.json')
   .then((response) => response.json())
@@ -36,36 +36,48 @@ function createUsersCards(user) {
     userDescription,
     cardLinks
   );
-  // userCard.addEventListener('click', ({ currentTarget }) => {
-  //   // checkedUsers.add({ [currentTarget.dataset.id]: currentTarget });
-  //   checkedUsers.add(currentTarget.dataset.id);
-  //   console.log(checkedUsers);
-  //   const userName = currentTarget.querySelector('.userName').textContent;
-  //   addListItem(userName, checkedUsersList)
-  //   updateListItem('', checkedUsersList)
-  // })
+  userCard.addEventListener('click', ({ currentTarget }) => {
+    const userId = currentTarget.dataset.id
+    const userName = currentTarget.querySelector('.userName').textContent;
+
+    currentTarget.classList.add('checkedCard');
+    updateList(
+      checkedUsersMap,
+      checkedUsersList,
+      {
+        dbKey: userId,
+        liContent: userName
+      });
+
+    checkedUsersMap.set(userId, currentTarget);
+    console.log(checkedUsersMap); //DELETE
+  })
 
   return userCard;
 }
 
-// function addListItem(liContent, ul) {
-//   const li = createElement('li', {
-//     classNames: [],
-//   },
-//   document.createTextNode(liContent))
-//   ul.append(li);
-// }
-// /**
-//  * 
-//  * @param {new Set} db 
-//  * @param {Element} list 
-//  */
-// function updateListItem(db, list)  {
-//   const liCollection =  list.children; 
-//   for (const item of Object.values(liCollection)){
-//     console.log(item.textContent);
-//   }
-// }
+
+
+/**
+ * 
+ * @param {new Map} db 
+ * @param {Element} list 
+ * @param {*} listItem.dbKey
+ * @param {string} listItem.liContent
+ */
+function updateList(db, list, { dbKey, liContent = '' }) {
+  if (db.has(dbKey)) {
+    return;
+  }
+
+  const li = createElement(
+    'li',
+    {},
+    document.createTextNode(liContent)
+  )
+  list.append(li);
+  return li;
+}
 
 
 

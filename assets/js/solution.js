@@ -72,7 +72,7 @@ function expandingTheList(db, list, { dbKey, liContent }) {
 
   const li = createElement(
     'li',
-    {},
+    { classNames: ['selectedUsersListItem'] },
     document.createTextNode(liContent),
   )
   li.append(createDeleteBtn(deleteHandler.bind(li), dbKey));

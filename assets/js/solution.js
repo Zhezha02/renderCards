@@ -41,12 +41,12 @@ function createUsersCards(user) {
     const userName = currentTarget.querySelector('.userName').textContent;
 
     currentTarget.classList.add('checkedCard');
-    updateList(
+    expandingTheList(
       checkedUsersMap,
       checkedUsersList,
       {
         dbKey: userId,
-        liContent: userName
+        liContent: userName || 'Unknown'
       });
 
     checkedUsersMap.set(userId, currentTarget);
@@ -64,8 +64,9 @@ function createUsersCards(user) {
  * @param {Element} list 
  * @param {*} listItem.dbKey
  * @param {string} listItem.liContent
+ * @returns {undefined, HTMLLIElement}
  */
-function updateList(db, list, { dbKey, liContent = '' }) {
+function expandingTheList(db, list, { dbKey, liContent }) {
   if (db.has(dbKey)) {
     return;
   }
